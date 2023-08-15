@@ -1,15 +1,17 @@
 package pos.machine;
 
+import java.util.List;
+
 public class FinalReceipt {
-    private final ItemsSubCost itemsSubCost;
+    private final List<ItemsSubCost> itemsSubCost;
     private final int receiptItemsTotalCost;
 
-    public FinalReceipt(ItemsSubCost itemsSubCost, int receiptItemsTotalCost) {
+    public FinalReceipt(List<ItemsSubCost> itemsSubCost, int receiptItemsTotalCost) {
         this.itemsSubCost = itemsSubCost;
         this.receiptItemsTotalCost = receiptItemsTotalCost;
     }
 
-    public ItemsSubCost getItemsSubCost() {
+    public List<ItemsSubCost> getItemsSubCost() {
         return itemsSubCost;
     }
 
