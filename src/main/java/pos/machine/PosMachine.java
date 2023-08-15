@@ -8,9 +8,9 @@ public class PosMachine {
     public static String printReceipt(List<String> barcodes) {
         List<BarcodeListWithQuantity> barcodeListWithQuantityList = countSameBarcodes(barcodes);
         List<ItemsInReceipt> itemsInReceiptList= mapBarcodesToItems(barcodeListWithQuantityList);
-        calculateCost(itemsInReceiptList);
+        FinalReceipt finalReceipt = calculateCost(itemsInReceiptList);
 
-        return null;
+        return generateReceipt(finalReceipt);
     }
 
     public static List<BarcodeListWithQuantity> countSameBarcodes(List<String> barcodes) {
@@ -59,6 +59,20 @@ public class PosMachine {
                 .map(element -> element.getSubTotal())
                 .reduce((a,b)-> Integer.sum(a,b)).orElse(0);
     }
-
-
+    public static String generateReceipt(FinalReceipt finalReceipt){
+        StringBuilder string = new StringBuilder();
+        string.append("***<store earning no money>Receipt***");
+        finalReceipt.getItemsSubCost().stream()
+                .forEach(element -> string.append("\n")
+                                      .append(String.format("Name: %s, Quantity: %s, Unit price: %s (yuan), Subtotal: %s (yuan)", element.getItemsInReceipt().getItem().getName(),
+                                              element.getItemsInReceipt().getQuantity(),
+                                              element.getItemsInReceipt().getItem().getPrice(),
+                                              element.getSubTotal())));
+        string.append("\n").append("----------------------")
+                .append("\n")
+                .append(String.format("Total: %s (yuan)", finalReceipt.getReceiptItemsTotalCost()))
+                .append("\n")
+                .append("**********************");
+        return String.format(string.toString());
+    }
 }
