@@ -35,7 +35,7 @@ public class PosMachine {
         for (Item item : itemList) {
             barcodeListWithQuantityList.stream()
                     .filter(itemInReceipt -> itemInReceipt.getBarcode().equals(item.getBarcode()))
-                    .forEach(element -> itemsInReceiptList.add(new ItemsInReceipt(element.getBarcode(), item.getName(), item.getPrice(),element.getQuantity())));
+                    .forEach(element -> itemsInReceiptList.add(new ItemsInReceipt(item,element.getQuantity())));
         }
         return itemsInReceiptList;
     }
