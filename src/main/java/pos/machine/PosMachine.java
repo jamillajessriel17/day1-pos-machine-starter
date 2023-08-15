@@ -9,6 +9,7 @@ public class PosMachine {
         List<BarcodeListWithQuantity> barcodeListWithQuantityList = countSameBarcodes(barcodes);
         List<ItemsInReceipt> itemsInReceiptList= mapBarcodesToItems(barcodeListWithQuantityList);
         List <ItemsSubCost> itemsSubCostList = calculateSubCost(itemsInReceiptList);
+        calculateTotalCost(itemsSubCostList);
         return null;
     }
 
@@ -47,4 +48,12 @@ public class PosMachine {
 
         return itemsSubCostList;
     }
+    public static int calculateTotalCost( List <ItemsSubCost> itemsSubCostList){
+
+        return itemsSubCostList.stream()
+                .map(element -> element.getSubTotal())
+                .reduce((a,b)-> Integer.sum(a,b)).orElse(0);
+    }
+
+
 }
