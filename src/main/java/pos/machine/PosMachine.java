@@ -8,8 +8,8 @@ public class PosMachine {
     public static String printReceipt(List<String> barcodes) {
         List<BarcodeListWithQuantity> barcodeListWithQuantityList = countSameBarcodes(barcodes);
         List<ItemsInReceipt> itemsInReceiptList= mapBarcodesToItems(barcodeListWithQuantityList);
-        List <ItemsSubCost> itemsSubCostList = calculateSubCost(itemsInReceiptList);
-        calculateTotalCost(itemsSubCostList);
+        calculateCost(itemsInReceiptList);
+
         return null;
     }
 
@@ -40,6 +40,11 @@ public class PosMachine {
                     .forEach(element -> itemsInReceiptList.add(new ItemsInReceipt(item,element.getQuantity())));
         }
         return itemsInReceiptList;
+    }
+    public static FinalReceipt calculateCost(List<ItemsInReceipt> itemsInReceiptList){
+        List <ItemsSubCost> itemsSubCostList = calculateSubCost(itemsInReceiptList);
+        int  totalPrice = calculateTotalCost(itemsSubCostList);
+        return new FinalReceipt(itemsSubCostList,totalPrice);
     }
     public static List<ItemsSubCost> calculateSubCost(List<ItemsInReceipt> itemsInReceiptList){
         List<ItemsSubCost> itemsSubCostList = new ArrayList<>();
