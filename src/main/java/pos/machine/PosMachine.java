@@ -60,19 +60,19 @@ public class PosMachine {
                 .reduce((a,b)-> Integer.sum(a,b)).orElse(0);
     }
     public static String generateReceipt(FinalReceipt finalReceipt){
-        StringBuilder string = new StringBuilder();
-        string.append("***<store earning no money>Receipt***");
+        StringBuilder receipt = new StringBuilder();
+        receipt.append("***<store earning no money>Receipt***");
         finalReceipt.getItemsSubCost().stream()
-                .forEach(element -> string.append("\n")
+                .forEach(element -> receipt.append("\n")
                                       .append(String.format("Name: %s, Quantity: %s, Unit price: %s (yuan), Subtotal: %s (yuan)", element.getItemsInReceipt().getItem().getName(),
                                               element.getItemsInReceipt().getQuantity(),
                                               element.getItemsInReceipt().getItem().getPrice(),
                                               element.getSubTotal())));
-        string.append("\n").append("----------------------")
+        receipt.append("\n").append("----------------------")
                 .append("\n")
                 .append(String.format("Total: %s (yuan)", finalReceipt.getReceiptItemsTotalCost()))
                 .append("\n")
                 .append("**********************");
-        return String.format(string.toString());
+        return String.format(receipt.toString());
     }
 }
