@@ -17,7 +17,7 @@ public class PosMachine {
 
         List<BarcodeListWithQuantity> barcodeListWithQuantityList = new ArrayList<>();
         List<String> uniqueBarcodes = new ArrayList<>();
-
+        //TODO can convert this one into map or hashmap for shorter implementation in finding distinct item
         barcodes.stream()
                 .filter(element -> !uniqueBarcodes.contains(element))
                 .forEach(element -> uniqueBarcodes.add(element));
