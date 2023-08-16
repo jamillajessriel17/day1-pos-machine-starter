@@ -27,7 +27,7 @@ public class PosMachine {
 
         return barcodeListWithQuantityList;
     }
-
+//TODO follow the context map naming
     public static List<ItemsInReceipt> mapBarcodesToItems(List<BarcodeListWithQuantity> barcodeListWithQuantityList) {
 
         List<Item> itemList = ItemsLoader.loadAllItems();
