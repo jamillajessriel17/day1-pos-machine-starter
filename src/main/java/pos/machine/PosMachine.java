@@ -47,6 +47,7 @@ public class PosMachine {
         return new FinalReceipt(itemsSubCostList,totalPrice);
     }
     public static List<ItemsSubCost> calculateSubCost(List<ItemsInReceipt> itemsInReceiptList){
+        //TODO can reformat to make it more readable
         List<ItemsSubCost> itemsSubCostList = new ArrayList<>();
         itemsInReceiptList.stream()
                           .forEach(element -> itemsSubCostList.add(new ItemsSubCost(element, element.getQuantity()* element.getItem().getPrice())));
